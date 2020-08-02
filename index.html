@@ -15,14 +15,14 @@
 <div id="tooltip"></div>
 <body onload='init()'>
   <h1> My First Web Page </h1>
-<svg width=1500 height=900>
+<svg width=1250 height=800>
 </svg>
 <script>
 async function init() {
   const data = await d3.csv('https://asunar2.github.io/soccerviz/cars2017.csv');
 var margin = 50;
-var x = d3.scaleLog().domain([10,150]).range([0, 1400]);
-var y = d3.scaleLog().domain([10,150]).range([800,0]);
+var x = d3.scaleLog().domain([10,150]).range([0, 1150]);
+var y = d3.scaleLog().domain([10,150]).range([700,0]);
 var tooltip = d3.select("#tooltip");
 var rad = d3.scaleLinear().domain([0,12]).range([0,12]);
 
