@@ -3,7 +3,17 @@
     <title>Hello World</title>
   </head>
 <script src='https://d3js.org/d3.v5.min.js'></script>
-<style> circle {fill: lightblue; stroke: black;} </style>
+<style> circle {fill: lightblue; stroke: black;}
+#tooltip {
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    width: 60px; height: 40px;
+    background: white;
+    border: 0px;
+}
+</style>
+<div id="tooltip"></div>
 <body onload='init()'>
   <h1> My First Web Page </h1>
 <svg width=1500 height=900>
@@ -14,10 +24,29 @@ async function init() {
 var margin = 50;
 var x = d3.scaleLog().domain([10,150]).range([0, 1400]);
 var y = d3.scaleLog().domain([10,150]).range([800,0]);
+var tooltip = d3.select("#tooltip");
 var rad = d3.scaleLinear().domain([0,12]).range([0,12]);
+
+
 //Read the data
 
 // append the svg object to the body of the page
+
+var Tooltip = d3.select("svg")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+
+var mouseover = function(d) {
+        Tooltip
+          .style("opacity", 1)
+          .html("Exact value: ")
+      }
+var mouseleave = function(d) {
+        Tooltip
+          .style("opacity", 0)
+      }
+   
 d3.select("svg").append("g")
     .attr("transform",
           "translate(50,50)")
@@ -27,18 +56,24 @@ d3.select("svg").append("g")
     .append("circle")
       .attr("cx", function (d) { return x(d.AverageCityMPG); } )
       .attr("cy", function (d) { return y(d.AverageHighwayMPG); } )
-      .attr("r", function (d,i) { return 2 + rad(d.EngineCylinders); });
-  
-d3.select("svg").append("g")
-    .attr("transform", "translate(50,50)")
-.call(d3.axisBottom(x).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
-}
+      .attr("r", function (d,i) { return 2 + rad(d.EngineCylinders); })
+    .on("mouseover", function(d,i) {
+        tooltip.style("opacity", 1)
+               .style("left",(d3.event.pageX)+"px")
+               .style("top",(d3.event.pageY)+"px")
+               .html("Cylinder Number is "+d.EngineCylinders);
+    })
+    .on("mouseout", function() { tooltip.style("opacity", 0) })
 
+      
 d3.select("svg").append("g")
     .attr("transform", "translate(50,50)")
 .call(d3.axisLeft(y).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
-
-
+  
+d3.select("svg").append("g")
+    .attr("transform", "translate(50,850)")
+.call(d3.axisBottom(x).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
+}
 </script>
 </body>
 </html>
