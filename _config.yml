@@ -1,1 +1,21 @@
 theme: jekyll-theme-cayman
+
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="d3.min.js"></script>
+<style>
+body{ font: Arial 12px; text-align: center;}
+.link {
+  stroke: #ccc;
+}
+.node text {
+  pointer-events: none;
+  font: sans-serif;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<h3>Game of Thrones-Social Network Analysis</h3>
+<script type="text/javascript">
