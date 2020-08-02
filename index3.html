@@ -17,6 +17,16 @@
 <body onload='init()'>
   <h1> Fuel Type </h1>
 <svg width=1250 height=600>
+ <line x1="300" y1="200" x2="300" y2="350" style="stroke:rgb(0,0,0);stroke-width:2" />
+ <text x="200" y="150" fill="black">
+    <tspan x="200" y="160"> Most of these cars run on gasoline. </tspan>
+    <tspan x="220" y="180">About four run on diesel.</tspan>
+ </text>
+ <line x1="1100" y1="180" x2="1100" y2="300" style="stroke:rgb(0,0,0);stroke-width:2" />
+  <text x="950" y="330" fill="black">
+    <tspan x="950" y="340"> The most fuel efficient cares are electric cars </tspan>
+
+ </text>
 </svg>
 <script>
 async function init() {
@@ -97,7 +107,8 @@ d3.select("svg").append("text")
       .style("text-anchor", "middle")
       .text("Average City MPG");
 }
+
 </script>
-<p>Back to the <a href="index.html">start</a> ?</p>
+<p>Slide <a href="index.html"> 1 </a> <a href="index2.html"> 2 </a> 3</p>
 </body>
 </html>
