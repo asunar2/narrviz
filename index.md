@@ -3,46 +3,52 @@
 You can use the [editor on GitHub](https://github.com/asunar2/soccerviz/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-<!DOCTYPE html>
 <html>
-<head>
-<script type="text/javascript" src="d3.min.js"></script>
-<style>
-body{ font: Arial 12px; text-align: center;}
-.link {
-  stroke: #ccc;
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<style> circle {fill: lightblue; stroke: black;} </style>
+<body onload='init()'>
+<svg width=300 height=300>
+</svg>
+<script>
+async function init() {
+  const data = await d3.csv('https://flunky.github.io/cars2017.csv');
+var margin = 50;
+var x = d3.scaleLog().domain([10,150]).range([0, 200]);
+var y = d3.scaleLog().domain([10,150]).range([200,0]);
+var rad = d3.scaleLinear().domain([0,12]).range([0,12]);
+//Read the data
+
+
+// append the svg object to the body of the page
+d3.select("svg").append("g")
+    .attr("transform",
+          "translate(50,50)")
+    .selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function (d) { return x(d.AverageCityMPG); } )
+      .attr("cy", function (d) { return y(d.AverageHighwayMPG); } )
+      .attr("r", function (d,i) { return 2 + rad(d.EngineCylinders); });
+
+d3.select("svg").append("g")
+    .attr("transform", "translate(50,50)")
+.call(d3.axisLeft(y).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
+
+d3.select("svg").append("g")
+    .attr("transform", "translate(50,50)")
+.call(d3.axisBottom(x).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
 }
-.node text {
-  pointer-events: none;
-  font: sans-serif;
-}
-</style>
-<link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
-<h3>Game of Thrones-Social Network Analysis</h3>
-<script type="text/javascript">
-  
-  //Set margins and sizes
-var margin = {
-top: 20,
-bottom: 50,
-right: 30,
-left: 50
-};
+</script>
+</body>
+</html>
 
-var width = 960 - margin.left - margin.right;
-var height = 700 - margin.top - margin.bottom;
 
-//Load Color Scale
-var c10 = d3.scale.category10();
 
-//Create an SVG element and append it to the DOM
-var svgElement = d3.select("body")
-.append("svg").attr({"width": width+margin.left+margin.right, "height": height+margin.top+margin.bottom})
-.append("g")
-.attr("transform","translate("+margin.left+","+margin.top+")");
+
+
+
+
 
 
 ### Markdown
