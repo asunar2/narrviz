@@ -1,6 +1,11 @@
 <html>
   <head> 
-    <title>Hello World</title>
+    <script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("index2.html"); 
+    });
+    </script> 
   </head>
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {fill: lightblue; stroke: black;}
@@ -96,5 +101,6 @@ d3.select("svg").append("text")
       .text("Average City MPG");
 }
 </script>
+<div id="includedContent"></div>
 </body>
 </html>
