@@ -23,6 +23,26 @@ body{ font: Arial 12px; text-align: center;}
 <body>
 <h3>Game of Thrones-Social Network Analysis</h3>
 <script type="text/javascript">
+  
+  //Set margins and sizes
+var margin = {
+top: 20,
+bottom: 50,
+right: 30,
+left: 50
+};
+
+var width = 960 - margin.left - margin.right;
+var height = 700 - margin.top - margin.bottom;
+
+//Load Color Scale
+var c10 = d3.scale.category10();
+
+//Create an SVG element and append it to the DOM
+var svgElement = d3.select("body")
+.append("svg").attr({"width": width+margin.left+margin.right, "height": height+margin.top+margin.bottom})
+.append("g")
+.attr("transform","translate("+margin.left+","+margin.top+")");
 
 
 ### Markdown
