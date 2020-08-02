@@ -1,6 +1,6 @@
 <html>
   <head> 
-    <title>Hello World</title>
+    <title>Narrative Viz</title>
   </head>
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {stroke: black;}
@@ -15,8 +15,38 @@
 </style>
 <div id="tooltip"></div>
 <body onload='init()'>
-  <h1> My First Web Page </h1>
+  <h1> Luxury vs Standard </h1>
+  <p> Does the brand of the car make a difference in fuel efficiency?</p>
+  <p> Hover over to see specific make.</p>
 <svg width=1250 height=600>
+<line x1="150" y1="475" x2="150" y2="500" style="stroke:rgb(0,0,0);stroke-width:2" />
+ <text x="120" y="480" fill="black">
+    <tspan x="80" y="520"> Least fuel efficient tend</tspan>
+    <tspan x="90" y="540">to be luxury brands.</tspan>
+ </text>
+ <line x1="500" y1="150" x2="500" y2="300" style="stroke:rgb(0,0,0);stroke-width:2" />
+ <text x="200" y="150" fill="black">
+    <tspan x="415" y="100"> No clear correlation between </tspan>
+    <tspan x="420" y="120">car type and fuel efficiency</tspan>
+    <tspan x="420" y="140">for the majority of points.</tspan>
+ </text>
+ <line x1="1155" y1="160" x2="1155" y2="280" style="stroke:rgb(0,0,0);stroke-width:2" />
+  <text x="1100" y="330" fill="black">
+    <tspan x="1050" y="300"> Most fuel efficient tend to be</tspan>
+    <tspan x="1100" y="320"> standard brands.</tspan>
+ </text>
+ 
+<rect x="1100" y="400" width="125" height="125"
+  style="fill:white;stroke:black;stroke-width:2;fill-opacity:0;stroke-opacity:0.5" />
+ <text x="1110" y="420" fill="black">Legend
+ </text>
+ <circle cx="1115" cy="440" r="8" stroke="black" stroke-width="1" fill="red" />
+  <text x="1140" y="445" fill="black">Luxury
+ </text>
+ <circle cx="1115" cy="460" r="8" stroke="black" stroke-width="1" fill="Gold" /> 
+  <text x="1140" y="465" fill="black">Standard
+ </text>
+
 </svg>
 <script>
 async function init() {
@@ -57,12 +87,12 @@ d3.select("svg").append("g")
       .attr("cx", function (d) { return x(d.AverageCityMPG); } )
       .attr("cy", function (d) { return y(d.AverageHighwayMPG); } )
       .attr("fill", function (d) {if(d.Class == "Luxury") {return "Red" ;} else {return "Gold";} } )
-    .attr("r", function (d,i) { return 2 + rad(d.EngineCylinders); })
+    .attr("r", function (d,i) { return 7; })
     .on("mouseover", function(d,i) {
         tooltip.style("opacity", 1)
                .style("left",(d3.event.pageX)+"px")
                .style("top",(d3.event.pageY)+"px")
-               .html("Car type is "+d.Class);
+               .html("Car make is "+d.Make);
     })
     .on("mouseout", function() { tooltip.style("opacity", 0) })
 
@@ -97,6 +127,6 @@ d3.select("svg").append("text")
       .text("Average City MPG");
 }
 </script>
-<p>Hello. Do you want to view <a href="index3.html">page 3</a> ?</p>
+<p>Slide <a href="index.html"> 1 </a> 2 <a href="index2.html"> 3 </a> </p>
 </body>
 </html>
