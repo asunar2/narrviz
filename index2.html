@@ -16,14 +16,14 @@
 <div id="tooltip"></div>
 <body onload='init()'>
   <h1> My First Web Page </h1>
-<svg width=1500 height=900>
+<svg width=1250 height=600>
 </svg>
 <script>
 async function init() {
   const data = await d3.csv('https://asunar2.github.io/soccerviz/cars2017.csv');
 var margin = 50;
-var x = d3.scaleLog().domain([10,150]).range([0, 1400]);
-var y = d3.scaleLog().domain([10,150]).range([800,0]);
+var x = d3.scaleLog().domain([10,150]).range([0, 1150]);
+var y = d3.scaleLog().domain([10,150]).range([500,0]);
 var tooltip = d3.select("#tooltip");
 var rad = d3.scaleLinear().domain([0,12]).range([0,12]);
 
@@ -68,31 +68,31 @@ d3.select("svg").append("g")
 
       
 d3.select("svg").append("g")
-    .attr("transform", "translate(50,50)")
+    .attr("transform", "translate(70,50)")
 .call(d3.axisLeft(y).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
 
 d3.select("svg").append("text")
-      .attr("transform","translate(25,450)")
+      .attr("transform","translate(35,350)")
       .style("text-anchor", "middle")
     .text("Average"); 
     
 d3.select("svg").append("text")
-      .attr("transform","translate(27,465)")
+      .attr("transform","translate(37,365)")
       .style("text-anchor", "middle")
     .text("Highway"); 
     
 d3.select("svg").append("text")
-      .attr("transform","translate(25,480)")
+      .attr("transform","translate(35,380)")
       .style("text-anchor", "middle")
     .text("MPG"); 
   
 d3.select("svg").append("g")
-    .attr("transform", "translate(50,850)")
+    .attr("transform", "translate(70,550)")
 .call(d3.axisBottom(x).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
 
 d3.select("svg").append("text")             
       .attr("transform",
-            "translate(750,890)")
+            "translate(750,590)")
       .style("text-anchor", "middle")
       .text("Average City MPG");
 }
