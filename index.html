@@ -8,8 +8,8 @@
 async function init() {
   const data = await d3.csv('https://github.com/asunar2/soccerviz/blob/gh-pages/results.csv');
 var margin = 50;
-var x = d3.scaleLog().domain([10,150]).range([0, 200]);
-var y = d3.scaleLog().domain([10,150]).range([200,0]);
+var x = d3.scaleLog().domain([10,150]).range([0, 2000]);
+var y = d3.scaleLog().domain([10,150]).range([2000,0]);
 var rad = d3.scaleLinear().domain([0,12]).range([0,12]);
 //Read the data
 
