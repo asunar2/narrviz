@@ -48,7 +48,7 @@ var mouseleave = function(d) {
    
 d3.select("svg").append("g")
     .attr("transform",
-          "translate(50,50)")
+          "translate(70,50)")
     .selectAll("circle")
     .data(data)
     .enter()
@@ -66,31 +66,31 @@ d3.select("svg").append("g")
 
       
 d3.select("svg").append("g")
-    .attr("transform", "translate(50,50)")
+    .attr("transform", "translate(70,50)")
 .call(d3.axisLeft(y).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
 
 d3.select("svg").append("text")
-      .attr("transform","translate(25,450)")
+      .attr("transform","translate(35,450)")
       .style("text-anchor", "middle")
     .text("Average"); 
     
 d3.select("svg").append("text")
-      .attr("transform","translate(27,465)")
+      .attr("transform","translate(37,465)")
       .style("text-anchor", "middle")
     .text("Highway"); 
     
 d3.select("svg").append("text")
-      .attr("transform","translate(25,480)")
+      .attr("transform","translate(35,480)")
       .style("text-anchor", "middle")
     .text("MPG"); 
   
 d3.select("svg").append("g")
-    .attr("transform", "translate(50,850)")
+    .attr("transform", "translate(70,750)")
 .call(d3.axisBottom(x).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
 
 d3.select("svg").append("text")             
       .attr("transform",
-            "translate(750,890)")
+            "translate(750,790)")
       .style("text-anchor", "middle")
       .text("Average City MPG");
 }
