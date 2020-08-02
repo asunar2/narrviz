@@ -4,6 +4,27 @@ You can use the [editor on GitHub](https://github.com/asunar2/soccerviz/edit/gh-
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="d3.min.js"></script>
+<style>
+body{ font: Arial 12px; text-align: center;}
+.link {
+  stroke: #ccc;
+}
+.node text {
+  pointer-events: none;
+  font: sans-serif;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<h3>Game of Thrones-Social Network Analysis</h3>
+<script type="text/javascript">
+
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
