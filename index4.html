@@ -16,7 +16,7 @@
 <body onload='init()'>
   <h1> Engine Cylinders </h1>
   <p> Let's start by investigating how the number of engine cylinders in a car factors into fuel efficiency.</p>
-   <p> Hover over data points to see exact cylinder count.</p>
+   <p> Hover over data points to see exact cylinder count. Click to close hover text.</p>
     <p>Navigation: <a href="index.html"> Home </a> 1 <a href="index2.html"> 2 </a> <a href="index3.html"> 3 </a> </p>
 <svg width=1250 height=600>
  <line x1="150" y1="250" x2="150" y2="375" style="stroke:rgb(0,0,0);stroke-width:2" />
@@ -105,7 +105,12 @@ d3.select("svg").append("g")
                .style("top",(d3.event.pageY)+"px")
                .html("Cylinder Number is "+d.EngineCylinders);
     })
-    .on("mouseout", function() { tooltip.style("opacity", 0) })
+    .on("mouseleave", function() { tooltip.style("opacity", 1) })
+    window.onclick= myFunction;
+
+function myFunction() {
+  tooltip.style("opacity", 0);
+}
 
       
 d3.select("svg").append("g")
