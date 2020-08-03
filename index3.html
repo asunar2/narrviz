@@ -4,14 +4,6 @@
   </head>
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {stroke: black;}
-#tooltip {
-    opacity: 0;
-    position: absolute;
-    text-align: center;
-    width: 60px; height: 40px;
-    background: white;
-    border: 0px;
-}
 </style>
 <div id="tooltip"></div>
 <body onload='init()'>
@@ -61,21 +53,6 @@ var c = d3.scaleLinear().domain([1,9]).range([5,20])
 
 // append the svg object to the body of the page
 
-var Tooltip = d3.select("svg")
-      .append("div")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-
-var mouseover = function(d) {
-        Tooltip
-          .style("opacity", 1)
-          .html("Exact value: ")
-      }
-var mouseleave = function(d) {
-        Tooltip
-          .style("opacity", 0)
-      }
-   
 d3.select("svg").append("g")
     .attr("transform",
           "translate(70,50)")
@@ -87,18 +64,7 @@ d3.select("svg").append("g")
       .attr("cy", function (d) { return y(d.AverageHighwayMPG); } )
       .attr("fill", function (d) {if(d.Fuel == "Gasoline") {return "Brown" ;} if(d.Fuel == "Electricity") {return "Green" ;} else {return "LightBlue";} } )
     .attr("r", function (d,i) { return 8 })
-    .on("mouseover", function(d,i) {
-        tooltip.style("opacity", 1)
-               .style("left",(d3.event.pageX)+"px")
-               .style("top",(d3.event.pageY)+"px")
-               .html("Fuel Type is "+d.Fuel);
-    })
-    .on("mouseleave", function() { tooltip.style("opacity", 1) })
-    window.onclick= myFunction;
 
-function myFunction() {
-  tooltip.style("opacity", 0);
-}
 
       
 d3.select("svg").append("g")
