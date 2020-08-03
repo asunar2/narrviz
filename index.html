@@ -1,8 +1,9 @@
 <html>
   <head> 
+    <title>Narrative Viz</title>
   </head>
 <script src='https://d3js.org/d3.v5.min.js'></script>
-<style> circle {fill: lightblue; stroke: black;}
+<style> circle {stroke: black;}
 #tooltip {
     opacity: 0;
     position: absolute;
@@ -14,46 +15,27 @@
 </style>
 <div id="tooltip"></div>
 <body onload='init()'>
-  <h1> Engine Cylinders </h1>
-  <p> Let's start by investigating how the number of engine cylinders in a car factors into fuel efficiency.</p>
-   <p> Hover over data points to see exact cylinder count.</p>
+  <h1> Fuel Effenciency </h1>
+  <p> An investigation into how engine cylinders, car brand, and fuel type affect efficiency</p>
+  <p> Overview of dataset containing info on cars from 2017. Hover over to see specific MPG values.</p>
+  <p>Navigation: Home <a href="index.html"> 1 </a> <a href="index2.html"> 2 </a> <a href="index3.html"> 3 </a> </p>
 <svg width=1250 height=600>
- <line x1="150" y1="250" x2="150" y2="400" style="stroke:rgb(0,0,0);stroke-width:2" />
- <text x="100" y="200" fill="black">
-    <tspan x="75" y="200"> The worst fuel efficiency  </tspan>
-    <tspan x="110" y="220"> goes to the cars </tspan>
- <tspan x="80" y="240"> with over eight cylinders. </tspan>
+<line x1="400" y1="400" x2="400" y2="450" style="stroke:rgb(0,0,0);stroke-width:2" />
+ <text x="120" y="480" fill="black">
+    <tspan x="300" y="480"> Most of the cars in this dataset</tspan>
+    <tspan x="230" y="500">have MPG between 10-50 in both highway and city.</tspan>
  </text>
- 
- <line x1="500" y1="150" x2="500" y2="300" style="stroke:rgb(0,0,0);stroke-width:2" />
- <text x="440" y="100" fill="black">
-    <tspan x="435" y="120"> As cylinders decrease  </tspan>
-    <tspan x="425" y="140"> fuel efficiency increases. </tspan>
+ <line x1="775" y1="40" x2="775" y2="150" style="stroke:rgb(0,0,0);stroke-width:2" />
+ <text x="760" y="150" fill="black">
+    <tspan x="715" y="11"> Clear gap in dataset. </tspan>
+    <tspan x="695" y="31">No cars between 40-80 MPG.</tspan>
  </text>
- 
- <line x1="1100" y1="180" x2="1100" y2="300" style="stroke:rgb(0,0,0);stroke-width:2" />
-  <text x="950" y="320" fill="black">
-    <tspan x="960" y="330"> These cars contain zero engine cylinders </tspan>
-     <tspan x="970" y="350"> and we'll explore what they all have </tspan>
-     <tspan x="1020" y="370"> in common in a bit. </tspan>
+ <line x1="1155" y1="160" x2="1155" y2="280" style="stroke:rgb(0,0,0);stroke-width:2" />
+  <text x="1100" y="330" fill="black">
+    <tspan x="1050" y="300"> What factors do these</tspan>
+    <tspan x="1100" y="320"> cars have in common?</tspan>
  </text>
- 
-<rect x="1100" y="400" width="125" height="125"
-  style="fill:white;stroke:black;stroke-width:2;fill-opacity:0;stroke-opacity:0.5" />
- <text x="1110" y="420" fill="black">Cylinder Count
- </text>
- <circle cx="1117" cy="440" r="2" stroke="black" stroke-width="1" fill="brown" />
-  <text x="1140" y="445" fill="black">Zero
- </text>
- <circle cx="1117" cy="458" r="8" stroke="black" stroke-width="1" fill="lightblue" /> 
-  <text x="1140" y="465" fill="black">Six
- </text>
-  <circle cx="1117" cy="480" r="12" stroke="black" stroke-width="1" fill="green" /> 
-  <text x="1140" y="488" fill="black">Ten
- </text>
- <circle cx="1117" cy="508" r="14" stroke="black" stroke-width="1" fill="green" /> 
-  <text x="1140" y="515" fill="black">Twelve
- </text>
+
 </svg>
 <script>
 async function init() {
@@ -93,12 +75,13 @@ d3.select("svg").append("g")
     .append("circle")
       .attr("cx", function (d) { return x(d.AverageCityMPG); } )
       .attr("cy", function (d) { return y(d.AverageHighwayMPG); } )
-      .attr("r", function (d,i) { return 2 + rad(d.EngineCylinders); })
+      .attr("fill", "white")
+    .attr("r", function (d,i) { return 8; })
     .on("mouseover", function(d,i) {
         tooltip.style("opacity", 1)
                .style("left",(d3.event.pageX)+"px")
                .style("top",(d3.event.pageY)+"px")
-               .html("Cylinder Number is "+d.EngineCylinders);
+               .html("City MPG is: "+d.AverageCityMPG + " Highway MPG is:  "+d.AverageHighwayMPG );
     })
     .on("mouseout", function() { tooltip.style("opacity", 0) })
 
@@ -120,7 +103,7 @@ d3.select("svg").append("text")
 d3.select("svg").append("text")
       .attr("transform","translate(35,380)")
       .style("text-anchor", "middle")
-    .text("MPG");  
+    .text("MPG"); 
   
 d3.select("svg").append("g")
     .attr("transform", "translate(70,550)")
@@ -133,6 +116,6 @@ d3.select("svg").append("text")
       .text("Average City MPG");
 }
 </script>
-<p>Slide 1  <a href="index2.html"> 2 </a> <a href="index3.html"> 3 </a> </p>
+
 </body>
 </html>
