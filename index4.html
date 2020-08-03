@@ -1,0 +1,138 @@
+<html>
+  <head> 
+  </head>
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<style> circle {fill: lightblue; stroke: black;}
+#tooltip {
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    width: 60px; height: 40px;
+    background: white;
+    border: 0px;
+}
+</style>
+<div id="tooltip"></div>
+<body onload='init()'>
+  <h1> Engine Cylinders </h1>
+  <p> Let's start by investigating how the number of engine cylinders in a car factors into fuel efficiency.</p>
+   <p> Hover over data points to see exact cylinder count.</p>
+<svg width=1250 height=600>
+ <line x1="150" y1="250" x2="150" y2="400" style="stroke:rgb(0,0,0);stroke-width:2" />
+ <text x="100" y="200" fill="black">
+    <tspan x="75" y="200"> The worst fuel efficiency  </tspan>
+    <tspan x="110" y="220"> goes to the cars </tspan>
+ <tspan x="80" y="240"> with over eight cylinders. </tspan>
+ </text>
+ 
+ <line x1="500" y1="150" x2="500" y2="300" style="stroke:rgb(0,0,0);stroke-width:2" />
+ <text x="440" y="100" fill="black">
+    <tspan x="435" y="120"> As cylinders decrease  </tspan>
+    <tspan x="425" y="140"> fuel efficiency increases. </tspan>
+ </text>
+ 
+ <line x1="1100" y1="180" x2="1100" y2="300" style="stroke:rgb(0,0,0);stroke-width:2" />
+  <text x="950" y="320" fill="black">
+    <tspan x="960" y="330"> These cars contain zero engine cylinders </tspan>
+     <tspan x="970" y="350"> and we'll explore what they all have </tspan>
+     <tspan x="1020" y="370"> in common in a bit. </tspan>
+ </text>
+ 
+<rect x="1100" y="400" width="125" height="125"
+  style="fill:white;stroke:black;stroke-width:2;fill-opacity:0;stroke-opacity:0.5" />
+ <text x="1110" y="420" fill="black">Cylinder Count
+ </text>
+ <circle cx="1117" cy="440" r="2" stroke="black" stroke-width="1" fill="brown" />
+  <text x="1140" y="445" fill="black">Zero
+ </text>
+ <circle cx="1117" cy="458" r="8" stroke="black" stroke-width="1" fill="lightblue" /> 
+  <text x="1140" y="465" fill="black">Six
+ </text>
+  <circle cx="1117" cy="480" r="12" stroke="black" stroke-width="1" fill="green" /> 
+  <text x="1140" y="488" fill="black">Ten
+ </text>
+ <circle cx="1117" cy="508" r="14" stroke="black" stroke-width="1" fill="green" /> 
+  <text x="1140" y="515" fill="black">Twelve
+ </text>
+</svg>
+<script>
+async function init() {
+  const data = await d3.csv('https://asunar2.github.io/narrviz/cars2017.csv');
+var margin = 50;
+var x = d3.scaleLog().domain([10,150]).range([0, 1150]);
+var y = d3.scaleLog().domain([10,150]).range([500,0]);
+var tooltip = d3.select("#tooltip");
+var rad = d3.scaleLinear().domain([0,12]).range([0,12]);
+
+
+//Read the data
+
+// append the svg object to the body of the page
+
+var Tooltip = d3.select("svg")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+
+var mouseover = function(d) {
+        Tooltip
+          .style("opacity", 1)
+          .html("Exact value: ")
+      }
+var mouseleave = function(d) {
+        Tooltip
+          .style("opacity", 0)
+      }
+   
+d3.select("svg").append("g")
+    .attr("transform",
+          "translate(70,50)")
+    .selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function (d) { return x(d.AverageCityMPG); } )
+      .attr("cy", function (d) { return y(d.AverageHighwayMPG); } )
+      .attr("r", function (d,i) { return 2 + rad(d.EngineCylinders); })
+    .on("mouseover", function(d,i) {
+        tooltip.style("opacity", 1)
+               .style("left",(d3.event.pageX)+"px")
+               .style("top",(d3.event.pageY)+"px")
+               .html("Cylinder Number is "+d.EngineCylinders);
+    })
+    .on("mouseout", function() { tooltip.style("opacity", 0) })
+
+      
+d3.select("svg").append("g")
+    .attr("transform", "translate(70,50)")
+.call(d3.axisLeft(y).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
+
+d3.select("svg").append("text")
+      .attr("transform","translate(35,350)")
+      .style("text-anchor", "middle")
+    .text("Average"); 
+    
+d3.select("svg").append("text")
+      .attr("transform","translate(37,365)")
+      .style("text-anchor", "middle")
+    .text("Highway"); 
+    
+d3.select("svg").append("text")
+      .attr("transform","translate(35,380)")
+      .style("text-anchor", "middle")
+    .text("MPG");  
+  
+d3.select("svg").append("g")
+    .attr("transform", "translate(70,550)")
+.call(d3.axisBottom(x).tickValues([10,20,50,100]).tickFormat(d3.format("~s")) );
+
+d3.select("svg").append("text")             
+      .attr("transform",
+            "translate(750,590)")
+      .style("text-anchor", "middle")
+      .text("Average City MPG");
+}
+</script>
+<p>Slide 1  <a href="index2.html"> 2 </a> <a href="index3.html"> 3 </a> </p>
+</body>
+</html>
