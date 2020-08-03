@@ -93,7 +93,12 @@ d3.select("svg").append("g")
                .style("top",(d3.event.pageY)+"px")
                .html("Fuel Type is "+d.Fuel);
     })
-    .on("mouseout", function() { tooltip.style("opacity", 0) })
+    .on("mouseleave", function() { tooltip.style("opacity", 1) })
+    window.onclick= myFunction;
+
+function myFunction() {
+  tooltip.style("opacity", 0);
+}
 
       
 d3.select("svg").append("g")
