@@ -5,7 +5,7 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {stroke: black;}
 #tooltip {
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     text-align: center;
     width: 60px; height: 40px;
@@ -16,8 +16,8 @@
 <div id="tooltip"></div>
 <body onload='init()'>
   <h1> Fuel Effeciency </h1>
-  <p> An investigation into how engine cylinders, car brand, and fuel type affect efficiency</p>
-  <p> Overview of dataset containing info on cars from 2017. Hover over to see specific MPG values.</p>
+  <p> An investigation into how engine cylinders, car brand, and fuel type affect efficiency in Cars2017 dataset.</p>
+  <p> Hover over to see specific MPG values. Click to close out of hover text.</p>
   <p>Navigation: Home <a href="index4.html"> 1 </a> <a href="index2.html"> 2 </a> <a href="index3.html"> 3 </a> </p>
 <svg width=1250 height=600>
 <line x1="400" y1="400" x2="400" y2="450" style="stroke:rgb(0,0,0);stroke-width:2" />
@@ -88,7 +88,12 @@ d3.select("svg").append("g")
                .style("top",(d3.event.pageY)+"px")
                .html("City MPG is: "+d.AverageCityMPG + " Highway MPG is:  "+d.AverageHighwayMPG );
     })
-    .on("mouseout", function() { tooltip.style("opacity", 1) })
+    .on("mouseleave", function() { tooltip.style("opacity", 1) })
+    window.onclick= myFunction;
+
+function myFunction() {
+  tooltip.style("opacity", 0);
+}
 
       
 d3.select("svg").append("g")
